@@ -6,16 +6,16 @@
 /*   By: lpupier <lpupier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:36:22 by lpupier           #+#    #+#             */
-/*   Updated: 2022/12/12 16:59:52 by lpupier          ###   ########.fr       */
+/*   Updated: 2022/12/19 14:53:48 by lpupier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-static void	check_character_end(int i, char *line, char *dest)
+static void	check_character_end(int i, int y, char *line, char *dest)
 {
-	else if (line[i] == 'B')
+	if (line[i] == 'B')
 	{
 		dest[y] = '1';
 		dest[++y] = '4';
@@ -37,7 +37,7 @@ static void	check_character_end(int i, char *line, char *dest)
 	}
 }
 
-static void	check_character_next(int i, char *line, char *dest)
+static void	check_character_next(int i, int y, char *line, char *dest)
 {
 	if (line[i] == '!')
 	{
@@ -63,7 +63,7 @@ static void	check_character_next(int i, char *line, char *dest)
 		check_character_end(i, line, dest);
 }
 
-static void	check_character(int i, char *line, char *dest)
+static void	check_character(int i, int y, char *line, char *dest)
 {
 	if (line[i] == ' ')
 		dest[y] = '0';
@@ -88,7 +88,7 @@ static void	check_character(int i, char *line, char *dest)
 	else if (line[i] == '7')
 		dest[y] = '9';
 	else
-		return (check_character_next(i, line, dest));
+		return (check_character_next(i, y, line, dest));
 }
 
 static void	new_str_w_space(int fd, int f, char *dest)
@@ -108,12 +108,7 @@ static void	new_str_w_space(int fd, int f, char *dest)
 			break ;
 		while (line[i])
 		{
-			check_character(i, line, dest);
-			else
-			{
-				ft_printf("[ERROR] '%c'\n", line[i]);
-				return (NULL);
-			}
+			check_character(i, y, line, dest);
 			i++;
 			y++;
 			if (line[i] == '\n')
