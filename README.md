@@ -1,5 +1,5 @@
 # Map-Generator-FdF
-**Description:** This program takes a text file formatted in **ASCII** and transforms it into a file in ***FdF*** format.
+**Description:** This program takes a text file formatted in **ASCII** and transforms it into a file in ***FdF*** format. 
 
 ## Explanations of operation
 - 📝 The user must have a text file in *UTF-8* format.
